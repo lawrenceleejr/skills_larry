@@ -2,8 +2,8 @@
 # GPU rendering is done on the host via run_host.sh, not in this image.
 FROM debian:bookworm-slim
 
-ARG BLENDER_SERIES=5.0
-ARG BLENDER_VERSION=5.0.0
+ARG BLENDER_SERIES=5.1
+ARG BLENDER_VERSION=5.1.2
 ARG BLENDER_URL=https://download.blender.org/release/Blender${BLENDER_SERIES}/blender-${BLENDER_VERSION}-linux-x64.tar.xz
 
 # Libraries Blender needs even in background mode, plus ffmpeg for encoding.
