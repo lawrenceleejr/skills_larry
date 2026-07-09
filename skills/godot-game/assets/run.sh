@@ -26,8 +26,10 @@ export_one() {  # $1 = target key; runs the actual godot export (host or in-cont
   local key="$1" out="${OUTFILE[$1]}"
   mkdir -p "$(dirname "$out")"
   log "exporting '$key' -> $out"
-  "$GODOT" --headless --import .              # ensure resources are imported
-  "$GODOT" --headless --export-release "${PRESET[$key]}" "$out"
+  # Import resources first (tolerate flag differences across Godot versions;
+  # --export-release also imports on demand).
+  "$GODOT" --headless --path . --import || true
+  "$GODOT" --headless --path . --export-release "${PRESET[$key]}" "$out"
 }
 
 run_targets() {  # runs on host or already inside container
