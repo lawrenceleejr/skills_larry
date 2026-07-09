@@ -38,10 +38,11 @@ decoration (and it is the one deliberate exception to strict data-ink).
 from shadow import with_drop_shadow, add_drop_shadow
 ax.plot(x, y, path_effects=with_drop_shadow())      # at draw time
 add_drop_shadow(ax.bar(cats, vals))                 # or after the fact
-# tune: with_drop_shadow(offset=(1.5,-1.5), sigma=3, alpha=0.35)
+# tune: with_drop_shadow(offset=(2,-2), sigma=7, alpha=0.4)
 ```
 
-Defaults are intentionally understated (offset 1.5pt, blur σ=3pt, alpha 0.35).
+Defaults are soft and understated (offset 2pt, blur σ=7pt, alpha 0.4); raise
+`sigma` for an even more diffuse shadow.
 The blur is a real Gaussian: in **PDF** output matplotlib rasterizes only the
 shadowed artist (mixed-mode) while the rest of the figure stays vector. Use it
 sparingly — one or two foreground layers, not everything.

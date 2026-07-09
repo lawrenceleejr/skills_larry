@@ -68,7 +68,7 @@ class DropShadow(AbstractPathEffect):
     sigma:  blur radius in points. alpha: peak shadow opacity. color: RGB 0-1.
     """
 
-    def __init__(self, offset=(1.5, -1.5), sigma=3.0, alpha=0.35, color=(0, 0, 0)):
+    def __init__(self, offset=(2.0, -2.0), sigma=7.0, alpha=0.4, color=(0, 0, 0)):
         super().__init__(offset)
         self._filter = _GaussianAlphaFilter(sigma, alpha, color)
         self._color = color
