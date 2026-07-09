@@ -24,7 +24,11 @@ and framing constant so differences are the only variable. Still: **one PDF per
 panel** — assemble in the document, not the plot.
 
 ## Practical defaults (encoded in tufte.mplstyle)
-- Serif font, modest sizes; PDF (`fonttype 42` for editable text).
+- **Computer Modern serif** (`cmr10`, bundled with matplotlib) so figures match a
+  LaTeX paper with no LaTeX install; math in matching `cm` mathtext. For an exact
+  match to a specific document, enable `text.usetex: True` (needs a LaTeX
+  toolchain). `axes.unicode_minus: False` so the minus renders via mathtext.
+- Modest sizes; PDF (`fonttype 42` for editable text).
 - No top/right spines, no grid, thin axes lines.
 - Muted color cycle; near-black primary series.
 - Small, outward tick marks.

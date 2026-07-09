@@ -15,6 +15,11 @@ Every plot follows Tufte's principles and these hard rules:
 
 Use the provided matplotlib style, then plot normally:
 
+The style defaults to a **Computer Modern serif** (`cmr10`, bundled with
+matplotlib) so figures drop into a LaTeX paper looking native — no LaTeX install
+required. For an exact match to a specific document, uncomment `text.usetex` in
+the style (needs a LaTeX toolchain).
+
 ```python
 import matplotlib.pyplot as plt
 plt.style.use("skills/tufte-plots/assets/tufte.mplstyle")

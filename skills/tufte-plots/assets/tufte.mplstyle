@@ -9,11 +9,19 @@ savefig.bbox:        tight
 pdf.fonttype:        42
 ps.fonttype:         42
 
-# --- fonts ---
+# --- fonts: Computer Modern serif to match a LaTeX paper ---
+# cmr10 ships with matplotlib, so this needs no LaTeX install. Math is set in the
+# matching Computer Modern (mathtext cm). For an exact match to a specific paper,
+# uncomment text.usetex below (requires a working LaTeX + dvipng/ghostscript).
 font.family:         serif
+font.serif:          cmr10, Latin Modern Roman, CMU Serif, DejaVu Serif
+mathtext.fontset:    cm
+axes.formatter.use_mathtext: True
+axes.unicode_minus:  False        # cmr10 lacks a Unicode minus; render via mathtext
 font.size:           10
 axes.titlesize:      11
 axes.labelsize:      10
+# text.usetex:       True
 
 # --- erase chartjunk ---
 axes.grid:           False
