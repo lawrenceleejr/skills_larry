@@ -18,6 +18,7 @@ engineering best practices. Point Claude Code at this repo (as a plugin, or copy
 | [`static-site`](skills/static-site) | Websites with Hugo/Jekyll, buildable in Docker, CI builds every push, deploy to GitHub Pages from `main` |
 | [`audit-loop`](skills/audit-loop) | Critically audit the repo/change, find and verify issues, fix what matters, repeat until clean |
 | [`plan-then-delegate`](skills/plan-then-delegate) | Plan on a powerful model in plan mode, write explicit steps for a weaker model, then execute via cheaper subagents |
+| [`godot-game`](skills/godot-game) | Godot games in Docker, CI builds for all platforms, gated Web deploy to GitHub Pages |
 
 ## Core principles
 
