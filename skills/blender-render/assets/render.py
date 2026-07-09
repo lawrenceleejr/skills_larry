@@ -204,6 +204,7 @@ def animate_cameras(hero, start, end):
         m = scene.timeline_markers.new(f"cut_{cam.name}", frame=frame)
         m.camera = cam
     scene.camera = cam_orbit
+    return [cam_orbit, cam_dolly, cam_crane]
 
 
 def _linear_fcurves():
@@ -217,18 +218,25 @@ def _linear_fcurves():
 # label
 # --------------------------------------------------------------------------- #
 def add_label(text: str, camera: bpy.types.Object) -> None:
-    """Add a readable caption, parented to the camera and placed low in frame."""
+    """Add a readable caption parented to `camera`, placed low in frame.
+
+    A FONT object's readable face points along +Z with "up" along +Y, matching a
+    camera's local axes (it looks down -Z, up +Y). So with identity rotation the
+    text faces straight back at the camera, upright — no extra rotation needed.
+    NOTE: with a large aperture the shallow DOF will soften a camera-close caption;
+    for a crisp caption composite it in 2D or render a label pass without DOF. The
+    inspection loop is expected to catch and fix caption readability.
+    """
     tdata = bpy.data.curves.new(name="label", type="FONT")
     tdata.body = text
     tdata.align_x = "CENTER"
     obj = bpy.data.objects.new("Label", tdata)
     bpy.context.collection.objects.link(obj)
     obj.data.materials.append(make_material("label", (1, 1, 1), emission=3.0))
-    # Place in front of and below the camera's optical axis so it reads clearly.
+    # In front of (-Z) and below (-Y) the optical axis, in the lower third.
     obj.parent = camera
-    obj.location = (0.0, -0.42, -1.6)   # x=center, y=lower third, z=in front
+    obj.location = (0.0, -0.42, -1.6)
     obj.scale = (0.12, 0.12, 0.12)
-    obj.rotation_euler = (math.radians(90), 0, 0)
 
 
 # --------------------------------------------------------------------------- #
@@ -265,9 +273,13 @@ def main() -> None:
     build_environment()
     hero = build_subjects()
     lighting.three_point_warm(target=tuple(hero.location))
-    animate_cameras(hero, args.start, args.end)
+    cams = animate_cameras(hero, args.start, args.end)
     if args.label:
-        add_label(args.label, bpy.context.scene.camera)
+        # Label every camera used, so the caption stays in frame across cuts
+        # (animation). For a still only the active camera is rendered.
+        targets = cams if args.mode == "animation" else [bpy.context.scene.camera]
+        for cam in targets:
+            add_label(args.label, cam)
     configure_render(args)
 
     if args.mode == "still":

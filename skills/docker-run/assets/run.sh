@@ -22,6 +22,8 @@ compute_hash() {
   # Hash the contents of all existing HASH_INPUTS deterministically.
   local existing=()
   for p in "${HASH_INPUTS[@]}"; do [[ -e "$p" ]] && existing+=("$p"); done
+  # No inputs present: emit a constant so `find` doesn't default to hashing ".".
+  [[ ${#existing[@]} -eq 0 ]] && { printf 'no-inputs'; return; }
   # find keeps output stable; sort for order-independence.
   find "${existing[@]}" -type f -exec sha256sum {} + 2>/dev/null \
     | sort | sha256sum | awk '{print $1}'

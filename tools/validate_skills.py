@@ -46,8 +46,11 @@ def main() -> int:
             errors.append(
                 f"{rel}: name '{fm['name']}' != directory '{skill.parent.name}'"
             )
-        if len(fm.get("description", "")) < 20:
+        desc = fm.get("description", "")
+        if len(desc) < 20:
             errors.append(f"{rel}: description too short to be useful")
+        if len(desc) > 1024:
+            errors.append(f"{rel}: description {len(desc)} chars exceeds 1024 limit")
 
     if errors:
         print("Skill validation failed:", file=sys.stderr)
