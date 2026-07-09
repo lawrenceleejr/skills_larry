@@ -4,4 +4,3 @@ __pycache__/
 .docker-build-hash
 example/output/
 *.root
-!skills/**
