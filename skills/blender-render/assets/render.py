@@ -209,9 +209,26 @@ def animate_cameras(hero, start, end):
 
 def _linear_fcurves():
     for action in bpy.data.actions:
-        for fc in action.fcurves:
+        for fc in _action_fcurves(action):
             for kp in fc.keyframe_points:
                 kp.interpolation = "LINEAR"
+
+
+def _action_fcurves(action):
+    """Yield every F-curve in `action`, across Blender versions.
+
+    Blender 4.4 introduced slotted (layered) actions and 5.0 removed the direct
+    `Action.fcurves` accessor; F-curves now live under layers -> strips ->
+    channelbags. Fall back to the legacy flat accessor when present.
+    """
+    fcurves = getattr(action, "fcurves", None)
+    if fcurves is not None:
+        yield from fcurves
+        return
+    for layer in getattr(action, "layers", []):
+        for strip in getattr(layer, "strips", []):
+            for cbag in getattr(strip, "channelbags", []):
+                yield from cbag.fcurves
 
 
 # --------------------------------------------------------------------------- #
