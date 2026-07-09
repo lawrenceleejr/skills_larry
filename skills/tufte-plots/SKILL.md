@@ -29,6 +29,23 @@ fig.savefig("figure.pdf", bbox_inches="tight")
 `assets/tufte_helpers.py` provides `spines_to_data_range(ax)` (Tufte range
 frames) and `save_pdf(fig, path)` (enforces PDF + tight bbox).
 
+## Subtle drop shadows (optional Z-order cue)
+To *gently* suggest that foreground elements sit above the plane, add a faint,
+blurred drop shadow via `assets/shadow.py`. Keep it subtle — it's a hint, not
+decoration (and it is the one deliberate exception to strict data-ink).
+
+```python
+from shadow import with_drop_shadow, add_drop_shadow
+ax.plot(x, y, path_effects=with_drop_shadow())      # at draw time
+add_drop_shadow(ax.bar(cats, vals))                 # or after the fact
+# tune: with_drop_shadow(offset=(1.5,-1.5), sigma=3, alpha=0.35)
+```
+
+Defaults are intentionally understated (offset 1.5pt, blur σ=3pt, alpha 0.35).
+The blur is a real Gaussian: in **PDF** output matplotlib rasterizes only the
+shadowed artist (mixed-mode) while the rest of the figure stays vector. Use it
+sparingly — one or two foreground layers, not everything.
+
 ## The rules (see references/tufte.md for rationale)
 
 1. **No chartjunk:** no gridlines, no background fill, no boxes, no legends when
