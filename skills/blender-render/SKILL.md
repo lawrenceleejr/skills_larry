@@ -9,6 +9,9 @@ Render Blender scenes to a consistent, cinematic house style. Assets live in
 `assets/`; render with `blender -b -P assets/render.py -- <flags>`.
 
 ## House style (all on by default)
+- **Renderer: Cycles** by default (path-traced, physically-based) with denoising
+  on. Only switch to EEVEE when the user asks or a fast preview is explicitly
+  needed — say so when you do.
 - **Enclosing environment:** the scene sits inside a soft, warm, inside-out
   emissive **sphere** (plus an outer shell) so lighting is contained and even.
 - **Warm soft lighting:** three-point setup of large area lights using the
