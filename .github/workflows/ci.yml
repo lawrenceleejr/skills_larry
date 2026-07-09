@@ -21,7 +21,7 @@ jobs:
       - name: Shellcheck run scripts
         run: |
           sudo apt-get update && sudo apt-get install -y shellcheck
-          shellcheck example/run.sh skills/docker-run/assets/run.sh
+          shellcheck $(find . -name '*.sh' -not -path './.git/*')
 
   test-example:
     runs-on: ubuntu-latest

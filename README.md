@@ -15,6 +15,8 @@ engineering best practices. Point Claude Code at this repo (as a plugin, or copy
 | [`desktop-app`](skills/desktop-app) | Build desktop apps in CI and expose a downloadable artifact |
 | [`git-workflow`](skills/git-workflow) | Commit and push before extensive testing |
 | [`blender-render`](skills/blender-render) | Cinematic Blender renders: warm soft temperature lighting, enclosing sphere, wide-angle DOF + motion blur, animated cameras, host-GPU or Docker/CI, PNG→MP4 |
+| [`static-site`](skills/static-site) | Websites with Hugo/Jekyll, buildable in Docker, CI builds every push, deploy to GitHub Pages from `main` |
+| [`audit-loop`](skills/audit-loop) | Critically audit the repo/change, find and verify issues, fix what matters, repeat until clean |
 
 ## Core principles
 
