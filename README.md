@@ -14,6 +14,7 @@ engineering best practices. Point Claude Code at this repo (as a plugin, or copy
 | [`uproot-analysis`](skills/uproot-analysis) | Read ROOT files with `uproot`, not PyROOT |
 | [`desktop-app`](skills/desktop-app) | Build desktop apps in CI and expose a downloadable artifact |
 | [`git-workflow`](skills/git-workflow) | Commit and push before extensive testing |
+| [`blender-render`](skills/blender-render) | Cinematic Blender renders: warm soft temperature lighting, enclosing sphere, wide-angle DOF + motion blur, animated cameras, host-GPU or Docker/CI, PNG→MP4 |
 
 ## Core principles
 
