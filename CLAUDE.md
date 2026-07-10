@@ -25,8 +25,12 @@ Follow these in every project. The `skills/` directory expands on each point.
 11. **Blender:** warm soft temperature lighting, enclosing sphere, wide-angle
     DOF + motion blur, animated cameras, host-GPU or Docker/CI. See
     `skills/blender-render`.
-12. **Audit everything.** End every task with a critical audit loop; verify and
+12. **Progress bars for long processes.** Any tool that can run longer than a
+    few seconds shows a useful progress bar — fraction done, rate, ETA
+    (`tqdm` in Python; heartbeat log lines in CI/non-TTY). See
+    `skills/progress-bars`.
+13. **Audit everything.** End every task with a critical audit loop; verify and
     fix before declaring done. See `skills/audit-loop`.
-13. **Plan high, execute low.** For big tasks, plan on a strong model then
+14. **Plan high, execute low.** For big tasks, plan on a strong model then
     delegate explicit steps to cheaper subagents. See `skills/plan-then-delegate`.
-14. Keep responses concise.
+15. Keep responses concise.
