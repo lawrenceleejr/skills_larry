@@ -20,6 +20,7 @@ engineering best practices. Point Claude Code at this repo (as a plugin, or copy
 | [`plan-then-delegate`](skills/plan-then-delegate) | Plan on a powerful model in plan mode, write explicit steps for a weaker model, then execute via cheaper subagents |
 | [`godot-game`](skills/godot-game) | Godot games in Docker, CI builds for all platforms, gated Web deploy to GitHub Pages |
 | [`typography`](skills/typography) | Free Google Fonts, self-hosted; font-pairing and hierarchy principles for all typeset output |
+| [`progress-bars`](skills/progress-bars) | Long-running tools show useful progress bars: fraction done, rate, ETA (`tqdm`; heartbeat logs in CI) |
 
 ## Core principles
 

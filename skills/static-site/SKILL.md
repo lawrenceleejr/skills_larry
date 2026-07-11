@@ -1,13 +1,17 @@
 ---
 name: static-site
-description: Build websites with an established static site generator (Hugo by default, Jekyll alternative), buildable in a Docker image, with GitHub Actions CI that builds every push and deploys to GitHub Pages from the main branch. Use whenever building or deploying a website, docs site, blog, or landing page.
+description: Build websites with an established static site generator (Hugo by default, Jekyll alternative) where the author writes Markdown content, buildable in a Docker image, with GitHub Actions CI that builds every push and deploys to GitHub Pages from the main branch. Use whenever building or deploying a website, docs site, blog, or landing page.
 ---
 
 # static-site
 
 Don't hand-roll a site. Use an established static site generator and let CI
-build and deploy it.
+build and deploy it. The author writes **Markdown**; the generator, CI, and
+Pages handle everything else.
 
+- **Content is Markdown.** Pages live as `.md` files under `content/` with
+  front matter for metadata. Keep the author's job to writing prose — layout,
+  styling, and navigation come from the theme, not from editing HTML.
 - **Generator:** Hugo by default (single binary, fast, trivial to Dockerize).
   Jekyll is the supported alternative — see `references/notes.md`.
 - **Buildable in Docker:** `assets/Dockerfile` + `assets/run.sh` build/serve in
@@ -28,6 +32,14 @@ cp skills/static-site/assets/pages.yml .github/workflows/pages.yml
 ```
 
 Then in the repo: Settings → Pages → **Source: GitHub Actions**.
+
+## Authoring content
+```sh
+hugo new posts/my-post.md   # scaffolds content/posts/my-post.md with front matter
+```
+Write the page body in Markdown below the front matter. That `.md` file is the
+whole deliverable — commit it, push, and CI builds and deploys. No HTML editing
+for ordinary content; reach for templates only to customize the theme itself.
 
 ## Build & preview
 ```sh
